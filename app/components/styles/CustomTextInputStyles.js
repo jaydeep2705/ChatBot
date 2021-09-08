@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
     color: Colors.darkBlue,
     padding: horizontalScale(16),
     fontSize: Fonts.size.medium,
-    fontFamily: Fonts.type.openSansSemiBold,
     textAlignVertical: 'center'
   }
 });

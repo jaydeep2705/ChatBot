@@ -30,6 +30,6 @@ const Metrics = {
     Platform.OS === 'ios' &&
     !Platform.isPad &&
     !Platform.isTVOS &&
-    (height === 812 || width === 812 || height === 896 || width === 896),,
+    (height === 812 || width === 812 || height === 896 || width === 896),
 };
 export {horizontalScale, verticalScale, moderateScale, Metrics};
