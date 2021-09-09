@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, Alert, Keyboard, TouchableOpacity } from 'react-native';
+import { View, Text, Alert, Keyboard, TouchableOpacity, Button } from 'react-native';
 import styles from './styles/LoginScreenStyles';
-import { CustomButton, CustomTextInput } from '../components';
+import { Hoshi } from 'react-native-textinput-effects';
 
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('')
@@ -19,19 +19,33 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.headerTitle} onPress={() => navigation.navigate('RegisterScreen')}>Login</Text>
-      <CustomTextInput
-        placeholder={'Username'}
+      <Hoshi
+        label={'Username'}
         keyboardType={'email-address'}
         value={username}
         onChangeText={(text) => setUsername(text)}
-        style={styles.input} />
-      <CustomTextInput
-        placeholder={'Password'}
+        borderColor={'#ec5990'}
+        style={styles.input}
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} 
+      />
+      <Hoshi
+        label={'Password'}
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}
-        style={styles.input} />
-      <CustomButton title={'Login'} buttonStyle={styles.button} textStyle={styles.buttonText} onPress={onLoginPress} />
+        borderColor={'#ec5990'}
+        style={styles.input}
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} 
+      />
+      <View style={styles.button}>
+        <Button
+          color
+          title="Login"
+          onPress={onLoginPress}
+        />
+      </View>
       <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
         <Text
           style={styles.register}>

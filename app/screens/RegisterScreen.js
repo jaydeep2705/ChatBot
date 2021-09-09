@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Text, Alert, Keyboard, TouchableOpacity, Platform } from 'react-native';
+import { KeyboardAvoidingView, Text, Alert, Keyboard, TouchableOpacity, Platform, View, Button } from 'react-native';
 import styles from './styles/LoginScreenStyles';
-import { CustomButton, CustomTextInput } from '../components';
+import { Hoshi } from 'react-native-textinput-effects';
 
 const RegisterScreen = ({ navigation }) => {
   const [username, setUsername] = useState('')
@@ -32,42 +32,64 @@ const RegisterScreen = ({ navigation }) => {
     style={styles.container}
       >
       <Text style={styles.headerTitle} onPress={() => navigation.navigate('RegisterScreen')}>Register</Text>
-      <CustomTextInput
-        placeholder={'Username'}
+      <Hoshi
+        label={'Username'}
         keyboardType={'email-address'}
         value={username}
         onChangeText={(text) => setUsername(text)}
-        style={styles.input} />
-      <CustomTextInput
-        placeholder={'Firstname'}
+        borderColor={'#ec5990'}
+        style={styles.input} 
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} />
+      <Hoshi
+        label={'Firstname'}
         value={firstname}
         onChangeText={(text) => setFirstname(text)}
-        style={styles.input} />
-      <CustomTextInput
-        placeholder={'Lastname'}
+        borderColor={'#ec5990'}
+        style={styles.input} 
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} />
+      <Hoshi
+        label={'Lastname'}
         value={lastname}
         onChangeText={(text) => setLastname(text)}
-        style={styles.input} />
-      <CustomTextInput
-        placeholder={'Mobile number'}
+        borderColor={'#ec5990'}
+        style={styles.input} 
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} />
+      <Hoshi
+        label={'Mobile number'}
         keyboardType={'number-pad'}
         value={mobile}
         maxLength={10}
         onChangeText={(text) => setMobile(text)}
-        style={styles.input} />
-      <CustomTextInput
-        placeholder={'Password'}
+        borderColor={'#ec5990'}
+        style={styles.input} 
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} />
+      <Hoshi
+        label={'Password'}
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}
-        style={styles.input} />
-      <CustomButton title={'Register'} buttonStyle={styles.button} textStyle={styles.buttonText} onPress={onRegisterPress} />
-      <TouchableOpacity onPress={onLoginPress}>
-        <Text
-          style={styles.register}>
-          Login
-        </Text>
-      </TouchableOpacity>
+        borderColor={'#ec5990'}
+        style={styles.input} 
+        labelStyle={styles.labelStyle}
+        inputStyle={styles.inputStyle} />
+      <View style={styles.button}>
+        <Button
+          color
+          title="Register"
+          onPress={onRegisterPress}
+        />
+      </View>
+      <View style={styles.button}>
+        <Button
+          color
+          title="Login"
+          onPress={onLoginPress}
+        />
+      </View>
     </KeyboardAvoidingView>
   );
 };

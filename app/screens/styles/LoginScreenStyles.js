@@ -5,30 +5,38 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems:"center",
-    justifyContent:'center'
+    justifyContent:'center',
+    backgroundColor: '#0e101c',
   },
   headerTitle: {
-    color: Colors.greyishBrownSix,
+    color: Colors.white,
     fontSize: Fonts.size.h5,
-    fontWeight: '600'
+    fontWeight: '600',
+    marginBottom:10
   },
   input: {
-    backgroundColor: Colors.goldenTwo, 
     height: 45, 
     width: '80%',
-    marginTop: 10,
-    borderRadius: 5
+    marginTop: 20,
+  },
+  labelStyle: {
+    color: Colors.white
+  },
+  inputStyle: {
+    color: Colors.white
   },
   button: {
-    backgroundColor: Colors.goldenTwo,
-    marginTop: 10
-  },
-  buttonText: {
-    color: Colors.black
+    marginTop: 20,
+    width: '80%',
+    color: 'white',
+    height: 40,
+    backgroundColor: '#ec5990',
+    borderRadius: 4,
   },
   register: {
-    marginTop: 5
-  }
+    marginTop: 10,
+    color: Colors.white
+  },
 });
 
 export default styles;
