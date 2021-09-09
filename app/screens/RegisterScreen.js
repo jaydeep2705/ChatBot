@@ -17,7 +17,10 @@ const RegisterScreen = ({ navigation }) => {
 
   const onRegisterPress = () => {
     Keyboard.dismiss()
-    if (username?.trim() !== '' && firstname?.trim() !== '' && lastname?.trim() !== '' && mobile?.trim() !== '' && password?.trim() !== '') {
+    let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if(!emailRegex.test(username?.trim())){
+      Alert.alert('ChatBot', 'Please enter valid email address')
+    }else if (username?.trim() !== '' && firstname?.trim() !== '' && lastname?.trim() !== '' && mobile?.trim() !== '' && password?.trim() !== '') {
       Alert.alert('ChatBot', 'Register Successful')
       navigation.navigate('LoginScreen')
     } else {
@@ -33,7 +36,7 @@ const RegisterScreen = ({ navigation }) => {
       >
       <Text style={styles.headerTitle} onPress={() => navigation.navigate('RegisterScreen')}>Register</Text>
       <Hoshi
-        label={'Username'}
+        label={'Email'}
         keyboardType={'email-address'}
         value={username}
         onChangeText={(text) => setUsername(text)}

@@ -9,10 +9,13 @@ const LoginScreen = ({ navigation }) => {
 
   const onLoginPress = () => {
     Keyboard.dismiss()
-    if (username?.trim() !== '' && password?.trim() !== '') {
+    let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if(!emailRegex.test(username?.trim())){
+      Alert.alert('ChatBot', 'Please enter valid email address')
+    }else if(username?.trim() !== '' && password?.trim() !== '') {
       navigation.navigate('ChatScreen')
     } else {
-      Alert.alert('ChatBot', 'Please enter valid username and password')
+      Alert.alert('ChatBot', 'Please enter valid email and password')
     }
   }
 
@@ -20,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Text style={styles.headerTitle} onPress={() => navigation.navigate('RegisterScreen')}>Login</Text>
       <Hoshi
-        label={'Username'}
+        label={'Email'}
         keyboardType={'email-address'}
         value={username}
         onChangeText={(text) => setUsername(text)}
