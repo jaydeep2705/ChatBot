@@ -18,7 +18,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerTitle} onPress={() => navigation.navigate('RegisterScreen')}>LoginScreen</Text>
+      <Text style={styles.headerTitle} onPress={() => navigation.navigate('RegisterScreen')}>Login</Text>
       <CustomTextInput
         placeholder={'Username'}
         keyboardType={'email-address'}
