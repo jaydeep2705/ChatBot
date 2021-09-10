@@ -4,19 +4,41 @@ import {Colors, Fonts} from '../../theme'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems:"center",
-    justifyContent:'center',
-    backgroundColor: '#0e101c',
+    backgroundColor: '#1d222e',
   },
   headerTitle: {
-    color: Colors.white,
-    fontSize: Fonts.size.h5,
+    marginTop: 80,
+    marginLeft:40,
+    color: '#f4d431',
+    fontSize: Fonts.size.h2,
     fontWeight: '600',
     marginBottom:10
   },
+  subContainer:{
+    height: '100%',
+    marginTop: 150,
+    backgroundColor: '#ffffff',
+  },
+  viewContainer: {
+    padding:20,
+    marginTop: -140,
+    marginLeft:40,
+    marginRight: 40,
+    alignItems:'center',
+    justifyContent:'center',
+    backgroundColor: '#ffffff',
+    borderRadius: 5,
+    borderBottomWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    elevation: 1,
+    
+  },
   input: {
     height: 45, 
-    width: '80%',
+    width: '100%',
     marginTop: 20,
   },
   labelStyle: {
@@ -26,16 +48,22 @@ const styles = StyleSheet.create({
     color: Colors.white
   },
   button: {
-    marginTop: 20,
-    width: '80%',
+    marginTop: -20,
+    alignSelf:'center',
+    width: '50%',
     color: 'white',
     height: 40,
-    backgroundColor: '#ec5990',
-    borderRadius: 4,
+    backgroundColor: '#1d222e',
+    borderRadius: 20,
+  },
+  btnRegister: {
+    width: '100%',
+    marginBottom:40,
+    marginTop: 20,
   },
   register: {
-    marginTop: 10,
-    color: Colors.white
+    color: '#ec5990',
+    alignSelf:'flex-end',
   },
 });
 
