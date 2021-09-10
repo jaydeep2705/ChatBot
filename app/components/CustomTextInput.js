@@ -1,34 +1,114 @@
-import React, {forwardRef} from 'react';
-import { TextInput, View } from 'react-native';
-import styles from './styles/CustomTextInputStyles';
+import React, { useEffect, useRef, useState } from 'react'
+import {
+  Text,
+  TextInput,
+  StyleSheet,
+  View,
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
+} from 'react-native'
+import styles from './styles/CustomTextInputStyles'
 
-type CustomTextInputPropType = {
-  style: StyleProp<ViewStyle>,
-  inputTextStyle: StyleProp<ViewStyle>
-};
-
-function renderInput(ref, { value, inputTextStyle, ...otherProps }) {
-  const { input } = styles;
-  return (
-    <TextInput
-      ref={ref}
-      style={[input, inputTextStyle]}
-      value={`${value}`}
-      {...otherProps}
-    />
-  );
+type CustomButtonPropType = {
+  label: string,
+  errorText?: string | null
 }
 
-const CustomTextInput = (
-  { style, inputTextStyle, ...otherProps }: CustomTextInputPropType,
-  ref
-) => {
-  const { inputBg } = styles;
-  return (
-    <View style={[inputBg, style]}>
-      {renderInput(ref, { inputTextStyle, ...otherProps })}
-    </View>
-  );
-};
+const CustomTextInput = (props) => {
+  const {
+    label,
+    errorText,
+    value,
+    style,
+    onBlur,
+    onFocus,
+    ...restOfProps
+  } = props
+  const [isFocused, setIsFocused] = useState(false)
 
-export default forwardRef(CustomTextInput);
+  const inputRef = useRef(null)
+  const focusAnim = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    Animated.timing(focusAnim, {
+      toValue: isFocused || !!value ? 1 : 0,
+      duration: 150,
+      easing: Easing.bezier(0.4, 0, 0.2, 1),
+      useNativeDriver: true,
+    }).start()
+  }, [focusAnim, isFocused, value])
+
+  let color = isFocused ? 'black' : '#B9C4CA'
+  if (errorText) {
+    color = '#B00020'
+  }
+
+  return (
+    <View style={style}>
+      <TextInput
+        style={[
+          styles.input,
+          {
+            borderColor: color,
+          },
+        ]}
+        ref={inputRef}
+        {...restOfProps}
+        value={value}
+        onBlur={(event) => {
+          setIsFocused(false)
+          onBlur?.(event)
+        }}
+        onFocus={(event) => {
+          setIsFocused(true)
+          onFocus?.(event)
+        }}
+      />
+      <TouchableWithoutFeedback onPress={() => inputRef.current?.focus()}>
+        <Animated.View
+          style={[
+            styles.labelContainer,
+            {
+              transform: [
+                {
+                  scale: focusAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [1, 0.75],
+                  }),
+                },
+                {
+                  translateY: focusAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [18, -9],
+                  }),
+                },
+                {
+                  translateX: focusAnim.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [16, 0],
+                  }),
+                },
+              ],
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.label,
+              {
+                color,
+              },
+            ]}
+          >
+            {label}
+            {errorText ? '*' : ''}
+          </Text>
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      {!!errorText && <Text style={styles.error}>{errorText}</Text>}
+    </View>
+  )
+}
+
+export default CustomTextInput

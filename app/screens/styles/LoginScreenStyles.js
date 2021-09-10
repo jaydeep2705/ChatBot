@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   labelStyle: {
-    color: Colors.white
+    color: Colors.blackSeven
   },
   inputStyle: {
-    color: Colors.white
+    color: Colors.black
   },
   button: {
     marginTop: -20,
